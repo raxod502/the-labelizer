@@ -4,6 +4,13 @@
             :url "http://www.opensource.org/licenses/mit-license.php"}
   :url "https://github.com/raxod502/the-labelizer"
 
-  :dependencies [[org.clojure/clojure "1.8.0"]]
+  :dependencies [[bidi "2.1.1"]
+                 [org.clojure/clojure "1.8.0"]
+                 [ring "1.6.2"]]
 
-  :main labelizer.core)
+  :main labelizer.server
+  :min-lein-version "2.7.1"
+  :source-paths ["src/clj"]
+  :uberjar-name "the-labelizer.jar"
+
+  :profiles {:uberjar {:aot :all}})
