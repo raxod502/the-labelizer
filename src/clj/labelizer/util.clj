@@ -1,4 +1,5 @@
 (ns labelizer.util
+  "Utility functions."
   (:refer-clojure :exclude [defonce]))
 
 (defmacro defonce
