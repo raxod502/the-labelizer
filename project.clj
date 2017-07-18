@@ -5,6 +5,8 @@
   :url "https://github.com/raxod502/the-labelizer"
 
   :dependencies [[bidi "2.1.1"]
+                 [environ "1.1.0"]
+                 [http-kit "2.2.0"]
                  [org.clojure/clojure "1.8.0"]
                  [ring "1.6.2"]]
 
