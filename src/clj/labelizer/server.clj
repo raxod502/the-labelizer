@@ -24,7 +24,7 @@
     (println "Server stopped."))
   (alter-var-root
     #'stop-server-fn
-    (constantly (httpkit/run-server app/handler {:port port})))
+    (constantly (httpkit/run-server #'app/handler {:port port})))
   (println (str "Server running on port " port ".")))
 
 (defn stop-server
