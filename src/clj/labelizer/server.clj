@@ -3,6 +3,7 @@
   (:gen-class)
   (:refer-clojure :exclude [defonce])
   (:require [environ.core :as environ]
+            [labelizer.app :as app]
             [labelizer.util :as util :refer [defonce]]
             [org.httpkit.server :as httpkit]))
 
@@ -21,7 +22,9 @@
   (when stop-server-fn
     (stop-server-fn)
     (println "Server stopped."))
-  (alter-var-root #'stop-server-fn (constantly (httpkit/run-server :port port)))
+  (alter-var-root
+    #'stop-server-fn
+    (constantly (httpkit/run-server app/handler {:port port})))
   (println (str "Server running on port " port ".")))
 
 (defn stop-server
