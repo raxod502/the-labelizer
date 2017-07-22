@@ -21,29 +21,37 @@
   :figwheel {:destroy labelizer.server/stop-server
              :init labelizer.server/start-server}
 
-  :profiles {:dev {:plugins [[lein-figwheel "0.5.10"]]
+  :profiles {:dev {:dependencies [[com.cemerick/piggieback "0.2.1"]
+                                  [figwheel-sidecar "0.5.11"]
+                                  [org.clojure/tools.nrepl "0.2.13"]]
 
+                   :plugins [[lein-figwheel "0.5.11"]]
+
+                   :repl-options {:nrepl-middleware
+                                  [cemerick.piggieback/wrap-cljs-repl]}
                    :resource-paths ["target/resources/dev"]
                    :source-paths ["env/dev/clj"]
 
                    :cljsbuild
                    {:builds
                     {:app
-                     {:compiler {:asset-path "js/lib"
-                                 :main labelizer.core
-                                 :output-dir "target/resources/dev/public/js/lib"
-                                 :output-to "target/resources/dev/public/js/main.js"}
+                     {:compiler
+                      {:asset-path "js/lib"
+                       :main labelizer.core
+                       :output-dir "target/resources/dev/public/js/lib"
+                       :output-to "target/resources/dev/public/js/main.js"}
                       :figwheel true
                       :source-paths ["src/cljs"]}}}}
 
              :uberjar {:cljsbuild
                        {:builds
                         {:app
-                         {:compiler {:main labelizer.core
-                                     :optimizations :advanced
-                                     :output-dir "target/cljsbuild/uberjar"
-                                     :output-to "target/resources/uberjar/public/js/main.js"
-                                     :pretty-print true}
+                         {:compiler
+                          {:main labelizer.core
+                           :optimizations :advanced
+                           :output-dir "target/cljsbuild/uberjar"
+                           :output-to "target/resources/uberjar/public/js/main.js"
+                           :pretty-print true}
                           :source-paths ["src/cljs"]}}}
 
                        :aot :all
