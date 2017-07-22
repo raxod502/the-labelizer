@@ -21,11 +21,11 @@
   :source-paths ["src/clj"]
   :uberjar-name "the-labelizer.jar"
 
-  :cljsbuild {:builds [{:source-paths ["src/cljs"]
-                        :compiler {:asset-path "js/lib"
+  :cljsbuild {:builds [{:compiler {:asset-path "js/lib"
                                    :main labelizer.core
                                    :output-dir "resources/public/js/lib"
-                                   :output-to "resources/public/js/main.js"}}]}
+                                   :output-to "resources/public/js/main.js"}
+                        :source-paths ["src/cljs"]}]}
 
   :profiles {:uberjar {:aot :all
                        :hooks [leiningen.cljsbuild]
