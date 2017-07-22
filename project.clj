@@ -11,32 +11,44 @@
                  [org.clojure/clojurescript "1.9.671"]
                  [ring "1.6.2"]]
 
-  :plugins [[lein-cljsbuild "1.1.6"]
-            [lein-figwheel "0.5.10"]]
+  :plugins [[lein-cljsbuild "1.1.6"]]
 
-  :clean-targets ^{:protect false}
-  [[:cljsbuild :builds 0 :compiler :output-dir]
-   [:cljsbuild :builds 0 :compiler :output-to]
-   :target-path]
   :main labelizer.server
   :min-lein-version "2.6.1"
   :source-paths ["src/clj"]
   :uberjar-name "the-labelizer.jar"
 
-  :cljsbuild {:builds {:app
-                       {:compiler {:asset-path "js/lib"
-                                   :main labelizer.core
-                                   :output-dir "resources/public/js/lib"
-                                   :output-to "resources/public/js/main.js"}
-                        :figwheel true
-                        :source-paths ["src/cljs"]}}}
-
   :figwheel {:destroy labelizer.server/stop-server
              :init labelizer.server/start-server}
 
-  :profiles {:dev {:source-paths ["env/dev/clj"]}
-             :uberjar {:aot :all
+  :profiles {:dev {:plugins [[lein-figwheel "0.5.10"]]
+
+                   :resource-paths ["target/resources/dev"]
+                   :source-paths ["env/dev/clj"]
+
+                   :cljsbuild
+                   {:builds
+                    {:app
+                     {:compiler {:asset-path "js/lib"
+                                 :main labelizer.core
+                                 :output-dir "target/resources/dev/public/js/lib"
+                                 :output-to "target/resources/dev/public/js/main.js"}
+                      :figwheel true
+                      :source-paths ["src/cljs"]}}}}
+
+             :uberjar {:cljsbuild
+                       {:builds
+                        {:app
+                         {:compiler {:main labelizer.core
+                                     :optimizations :advanced
+                                     :output-dir "target/cljsbuild/uberjar"
+                                     :output-to "target/resources/uberjar/public/js/main.js"
+                                     :pretty-print true}
+                          :source-paths ["src/cljs"]}}}
+
+                       :aot :all
                        :main labelizer.server
                        :omit-source true
                        :prep-tasks ["compile" ["cljsbuild" "once"]]
+                       :resource-paths ["target/resources/uberjar"]
                        :source-paths ["env/prod/clj"]}})
