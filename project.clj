@@ -11,7 +11,8 @@
                  [org.clojure/clojurescript "1.9.671"]
                  [ring "1.6.2"]]
 
-  :plugins [[lein-cljsbuild "1.1.6"]]
+  :plugins [[lein-cljsbuild "1.1.6"]
+            [lein-figwheel "0.5.10"]]
 
   :clean-targets ^{:protect false} [[:cljsbuild :builds 0 :compiler :output-dir]
                                     [:cljsbuild :builds 0 :compiler :output-to]
@@ -25,7 +26,12 @@
                                    :main labelizer.core
                                    :output-dir "resources/public/js/lib"
                                    :output-to "resources/public/js/main.js"}
+                        :figwheel true
+                        :id :dev
                         :source-paths ["src/cljs"]}]}
+
+  :figwheel {:destroy labelizer.server/stop-server
+             :init labelizer.server/start-server}
 
   :profiles {:uberjar {:aot :all
                        :hooks [leiningen.cljsbuild]

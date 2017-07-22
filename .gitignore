@@ -1,5 +1,6 @@
 /.lein-repl-history
 /.nrepl-port
+/figwheel_server.log
 /resources/public/js/lib/
 /resources/public/js/main.js
 /target/
