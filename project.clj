@@ -17,7 +17,7 @@
                                     [:cljsbuild :builds 0 :compiler :output-to]
                                     :target-path]
   :main labelizer.server
-  :min-lein-version "2.7.1"
+  :min-lein-version "2.6.1"
   :source-paths ["src/clj"]
   :uberjar-name "the-labelizer.jar"
 
