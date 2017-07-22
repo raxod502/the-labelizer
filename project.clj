@@ -14,9 +14,10 @@
   :plugins [[lein-cljsbuild "1.1.6"]
             [lein-figwheel "0.5.10"]]
 
-  :clean-targets ^{:protect false} [[:cljsbuild :builds 0 :compiler :output-dir]
-                                    [:cljsbuild :builds 0 :compiler :output-to]
-                                    :target-path]
+  :clean-targets ^{:protect false}
+  [[:cljsbuild :builds 0 :compiler :output-dir]
+   [:cljsbuild :builds 0 :compiler :output-to]
+   :target-path]
   :main labelizer.server
   :min-lein-version "2.6.1"
   :source-paths ["src/clj"]
