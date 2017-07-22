@@ -27,4 +27,6 @@
                                    :output-dir "resources/public/js/lib"
                                    :output-to "resources/public/js/main.js"}}]}
 
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all
+                       :hooks [leiningen.cljsbuild]
+                       :main labelizer.server}})
