@@ -22,13 +22,12 @@
   :source-paths ["src/clj"]
   :uberjar-name "the-labelizer.jar"
 
-  :cljsbuild {:builds [{:compiler {:asset-path "js/lib"
-                                   :main labelizer.core
-                                   :output-dir "resources/public/js/lib"
-                                   :output-to "resources/public/js/main.js"}
-                        :figwheel true
-                        :id :dev
-                        :source-paths ["src/cljs"]}]}
+  :cljsbuild {:builds {:dev {:compiler {:asset-path "js/lib"
+                                        :main labelizer.core
+                                        :output-dir "resources/public/js/lib"
+                                        :output-to "resources/public/js/main.js"}
+                             :figwheel true
+                             :source-paths ["src/cljs"]}}}
 
   :figwheel {:destroy labelizer.server/stop-server
              :init labelizer.server/start-server}
