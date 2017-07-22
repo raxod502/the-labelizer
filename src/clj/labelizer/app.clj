@@ -23,11 +23,13 @@
       [:body body])))
 
 (def webapp
+  "Hiccup code for the main webapp page."
   [:div
    "This is the webapp."
    (hiccup/include-js "/js/main.js")])
 
 (def not-found
+  "Hiccup code for the not-found page."
   "This page does not exist.")
 
 (defn router
