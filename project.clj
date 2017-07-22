@@ -33,5 +33,6 @@
              :init labelizer.server/start-server}
 
   :profiles {:uberjar {:aot :all
-                       :hooks [leiningen.cljsbuild]
-                       :main labelizer.server}})
+                       :main labelizer.server
+                       :omit-source true
+                       :prep-tasks ["compile" ["cljsbuild" "once" "prod"]]}})
