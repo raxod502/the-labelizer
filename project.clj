@@ -34,7 +34,9 @@
   :figwheel {:destroy labelizer.server/stop-server
              :init labelizer.server/start-server}
 
-  :profiles {:uberjar {:aot :all
+  :profiles {:dev {:source-paths ["env/dev/clj"]}
+             :uberjar {:aot :all
                        :main labelizer.server
                        :omit-source true
-                       :prep-tasks ["compile" ["cljsbuild" "once" "prod"]]}})
+                       :prep-tasks ["compile" ["cljsbuild" "once"]]
+                       :source-paths ["env/prod/clj"]}})

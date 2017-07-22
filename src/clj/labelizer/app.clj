@@ -2,6 +2,7 @@
   "Ring app to handle HTTP requests."
   (:require [hiccup.core :as hiccup-render]
             [hiccup.page :as hiccup]
+            [labelizer.env :as env]
             [ring.middleware.content-type :as middleware-content-type]
             [ring.middleware.not-modified :as middleware-not-modified]
             [ring.middleware.resource :as middleware-resource]))
@@ -44,4 +45,5 @@
   (-> router
     (middleware-resource/wrap-resource "public")
     (middleware-content-type/wrap-content-type)
-    (middleware-not-modified/wrap-not-modified)))
+    (middleware-not-modified/wrap-not-modified)
+    (env/wrap-middleware)))
