@@ -18,11 +18,14 @@
   :source-paths ["src/clj"]
   :uberjar-name "the-labelizer.jar"
 
-  :figwheel {:destroy labelizer.server/stop-server
-             :init labelizer.server/start-server}
+  :profiles {:dev {:dependencies [[com.cemerick/piggieback "0.2.1"]
+                                  [figwheel-sidecar "0.5.11"]
+                                  [org.clojure/tools.nrepl "0.2.13"]]
 
-  :profiles {:dev {:plugins [[lein-figwheel "0.5.10"]]
+                   :plugins [[lein-figwheel "0.5.11"]]
 
+                   :repl-options {:nrepl-middleware
+                                  [cemerick.piggieback/wrap-cljs-repl]}
                    :resource-paths ["target/resources/dev"]
                    :source-paths ["env/dev/clj"]
 
@@ -35,7 +38,9 @@
                        :output-dir "target/resources/dev/public/js/lib"
                        :output-to "target/resources/dev/public/js/main.js"}
                       :figwheel true
-                      :source-paths ["src/cljs"]}}}}
+                      :source-paths ["src/cljs"]}}}
+
+                   :figwheel {:ring-handler labelizer.app/handler}}
 
              :uberjar {:cljsbuild
                        {:builds
