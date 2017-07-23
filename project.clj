@@ -29,21 +29,23 @@
                    :cljsbuild
                    {:builds
                     {:app
-                     {:compiler {:asset-path "js/lib"
-                                 :main labelizer.core
-                                 :output-dir "target/resources/dev/public/js/lib"
-                                 :output-to "target/resources/dev/public/js/main.js"}
+                     {:compiler
+                      {:asset-path "js/lib"
+                       :main labelizer.core
+                       :output-dir "target/resources/dev/public/js/lib"
+                       :output-to "target/resources/dev/public/js/main.js"}
                       :figwheel true
                       :source-paths ["src/cljs"]}}}}
 
              :uberjar {:cljsbuild
                        {:builds
                         {:app
-                         {:compiler {:main labelizer.core
-                                     :optimizations :advanced
-                                     :output-dir "target/cljsbuild/uberjar"
-                                     :output-to "target/resources/uberjar/public/js/main.js"
-                                     :pretty-print true}
+                         {:compiler
+                          {:main labelizer.core
+                           :optimizations :advanced
+                           :output-dir "target/cljsbuild/uberjar"
+                           :output-to "target/resources/uberjar/public/js/main.js"
+                           :pretty-print true}
                           :source-paths ["src/cljs"]}}}
 
                        :aot :all
