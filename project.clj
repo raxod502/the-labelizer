@@ -9,6 +9,7 @@
                  [http-kit "2.2.0"]
                  [org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.671"]
+                 [reagent "0.7.0"]
                  [ring "1.6.2"]]
 
   :plugins [[lein-cljsbuild "1.1.6"]]
@@ -34,7 +35,7 @@
                     {:app
                      {:compiler
                       {:asset-path "js/lib"
-                       :main labelizer.core
+                       :main labelizer.init
                        :output-dir "target/resources/dev/public/js/lib"
                        :output-to "target/resources/dev/public/js/main.js"}
                       :figwheel true

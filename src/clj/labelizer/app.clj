@@ -26,7 +26,7 @@
 (def webapp
   "Hiccup code for the main webapp page."
   [:div
-   "This is the webapp."
+   [:div#app "Loading..."]
    (hiccup/include-js "/js/main.js")])
 
 (def not-found
