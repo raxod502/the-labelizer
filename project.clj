@@ -47,7 +47,7 @@
                        {:builds
                         {:app
                          {:compiler
-                          {:main labelizer.core
+                          {:main labelizer.init
                            :optimizations :advanced
                            :output-dir "target/cljsbuild/uberjar"
                            :output-to "target/resources/uberjar/public/js/main.js"
